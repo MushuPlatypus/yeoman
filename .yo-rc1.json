@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Jannik Staunstrup Nilsson",
+      "authorEmail": "jastn@dfds.com",
+      "authorUrl": ""
+    }
+  }
+}
