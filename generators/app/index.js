@@ -47,6 +47,7 @@ module.exports = class extends Generator {
     let _project;
     let _template;
     let _path;
+    let _testConfig;
     if (this.props.path === '') {
       _path = '/components/';
     } else {
@@ -56,26 +57,43 @@ module.exports = class extends Generator {
       case 'Class':
         _template = '_class';
         this._writingComponent(_template, _path);
-        this._writingComponentTest(_template, _path);
-
+        if(this.props.project === 'web') {
+          this._writingComponentTest(_template, _path, this._getTestConfigPath(_path));
+        }
         this._writingComponentActions(_template, _path);
-        this._writingComponentActionsTest(_template, _path);
-
+        if(this.props.project === 'web') {
+          this._writingComponentActionsTest(_template, _path, this._getTestConfigPath(_path));
+        }
         this._writingComponentReducer(_template, _path);
-        this._writingComponentReducerTest(_template, _path);
-
+        if(this.props.project === 'web') {
+          this._writingComponentReducerTest(_template, _path, this._getTestConfigPath(_path));
+        }
         this._writingStyles(_template, _path);
         break;
       case 'Stateless':
         _template = '_stateless';
         this._writingComponent(_template, _path);
-        this._writingComponentTest(_template, _path);
-
+        if(this.props.project === 'web') {
+          this._writingComponentTest(_template, _path, this._getTestConfigPath(_path));
+        }
         this._writingStyles(_template, _path);
         break;
       default:
         _template = '_stateless';
     }
+  }
+  _getTestConfigPath(_path) {
+    let _defaultTestPath = './../../';
+    const _testConfig = 'config/test-setup.js';
+    if(this.props.path === '') {
+      return _defaultTestPath + _testConfig;
+    }
+    console.log(this.props.path);
+    const depth = this.props.path.split('/').length;
+    for (var i = 0; i < depth; i++) {
+      _defaultTestPath += '../'
+    }
+   return _defaultTestPath + _testConfig;
   }
 
   _writingComponent(_template, _path) {
@@ -88,14 +106,15 @@ module.exports = class extends Generator {
         });
   }
 
-  _writingComponentTest(_template, _path) {
+  _writingComponentTest(_template, _path, _testConfig) {
     this
       .fs
       .copyTpl(
         this.templatePath(`${_template}/_component-spec.js`),
         this.destinationPath(this.props.project + _path + this.props.name + '/' + this.props.name + '-spec.js'), {
           name: this.props.name,
-          reference: _path
+          reference: _path,
+          testConfig: _testConfig
         });
   }
 

@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import testSetup from '<%= testConfig %>';
+import testSetup from './../../config/test-setup.js';
 import { <%= name %> } from './<%= name %>';
 import { expect, assert } from 'chai';
 
