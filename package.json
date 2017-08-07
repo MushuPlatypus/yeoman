@@ -2,10 +2,10 @@
   "name": "generator-tmpl",
   "version": "0.0.0",
   "description": "Generate React components for Unified",
-  "homepage": "www.dfds.com",
+  "homepage": "",
   "author": {
     "name": "Jannik Staunstrup Nilsson",
-    "email": "jastn@dfds.com",
+    "email": "janniknilsson@outlook.com",
     "url": ""
   },
   "files": [
@@ -46,5 +46,5 @@
     }
   },
   "repository": "/generator-tmpl",
-  "private": true
+  "private": false
 }
