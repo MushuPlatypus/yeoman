@@ -1,10 +1,10 @@
-import { h, Component } from 'preact';
+import React from 'react';
 
-export default class <%= name %> extends Component {
+export default class <%= name %> extends React.Component {
   render() {
     return (
       <div>
-
+        CONTENT for <%= name %>
       </div>
     );
   }

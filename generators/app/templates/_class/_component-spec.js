@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 import testSetup from '<%= testConfig %>';
 import { <%= name %> } from './<%= name %>';
 import { expect, assert } from 'chai';

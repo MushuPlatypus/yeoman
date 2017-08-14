@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 import testSetup from './../../config/test-setup.js';
 import { <%= name %><%= nameMod %> } from './<%= name %><%= nameMod %>';
 import { expect, assert } from 'chai';
